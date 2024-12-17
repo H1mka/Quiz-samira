@@ -1,0 +1,75 @@
+<template>
+  <div>
+    <v-list density="compact" @click:select="handleSelect">
+      <v-list-item
+        v-for="(item, i) in variants"
+        :key="i"
+        :value="item"
+        color="primary"
+        class="quiz-list-item"
+      >
+        <div class="quiz-letter">{{ letters[i] }}</div>
+        <div class="quiz-text">{{ item.text }}</div>
+      </v-list-item>
+    </v-list>
+  </div>
+</template>
+
+<script>
+import { useQuizStore } from '@/store'
+
+export default {
+  props: {
+    answer: {
+      type: {},
+      required: true,
+      default: () => ({}),
+    },
+  },
+  data() {
+    return {
+      letters: ['A', 'B', 'C', 'D', 'E', 'F'],
+    }
+  },
+  computed: {
+    variants() {
+      return this.quizStore.currentQuestion.variants
+    },
+  },
+  methods: {
+    handleSelect(item) {
+      this.$emit('update:answer', item.id)
+    },
+  },
+  setup() {
+    const quizStore = useQuizStore()
+    return { quizStore }
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.quiz-list-item::v-deep {
+  font-size: 16px;
+  .v-list-item__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+    overflow: visible;
+  }
+}
+
+.quiz-letter {
+  width: 24px;
+  height: 24px;
+  background-color: #adabf2;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+</style>

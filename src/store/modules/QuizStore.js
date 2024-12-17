@@ -1,0 +1,58 @@
+import { defineStore } from 'pinia'
+
+const DEFAULT_QUESTIONS = [
+  {
+    id: 1,
+    title: 'Тест 1',
+    variants: [
+      { id: 'ans-1', text: 'Вариант ответа 1' },
+      { id: 'ans-2', text: 'Вариант ответа 2' },
+      { id: 'ans-3', text: 'Вариант ответа 3' },
+      { id: 'ans-4', text: 'Вариант ответа 4' },
+    ],
+    correctAnswerId: 'ans-1',
+    isCorrect: false,
+  },
+  {
+    id: 2,
+    title: 'Тест 2',
+    variants: [
+      { id: 'ans-1', text: 'Вариант ответа 1' },
+      { id: 'ans-2', text: 'Вариант ответа 2' },
+      { id: 'ans-3', text: 'Вариант ответа 3' },
+      { id: 'ans-4', text: 'Вариант ответа 4' },
+    ],
+    correctAnswerId: 'ans-2',
+    isCorrect: false,
+  },
+]
+
+const useQuizStore = defineStore('quizStore', {
+  state: () => ({
+    questions: JSON.parse(JSON.stringify(DEFAULT_QUESTIONS)),
+    questionIndex: 0,
+  }),
+  actions: {
+    setCorrectAnswer(asnwerId) {
+      const correct = asnwerId === this.currentQuestion.correctAnswerId
+      this.currentQuestion.isCorrect = correct
+    },
+    checkAnswer(asnwer) {
+      this.setCorrectAnswer(asnwer.id)
+      this.nextQuestion()
+    },
+    nextQuestion() {
+      if (this.questionIndex === this.questions.length - 1) {
+        console.log('End of test!')
+        // router to finish page
+        return
+      }
+      this.questionIndex += 1
+    },
+  },
+  getters: {
+    currentQuestion: (state) => state.questions[state.questionIndex],
+  },
+})
+
+export default useQuizStore
