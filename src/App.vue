@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <SnowParticles />
     <v-main>
       <router-view />
     </v-main>
@@ -9,9 +10,10 @@
 
 <script>
 import Footer from '@/components/Footer.vue'
+import SnowParticles from '@/components/particles/SnowParticles.vue'
 
 export default {
-  components: { Footer },
+  components: { Footer, SnowParticles },
 }
 </script>
 
@@ -25,9 +27,12 @@ export default {
   width: 100%;
 }
 
+// bgc - #806491
+
 .v-application {
   // background-color: #656382;
-  background-color: #675fd4;
+  // background-color: #675fd4;
+  background-color: #806491;
 }
 // .v-main {
 //   display: flex;

@@ -17,6 +17,7 @@
 
 <script>
 import { useQuizStore } from '@/store'
+import { mapState } from 'pinia'
 
 export default {
   props: {
@@ -32,8 +33,14 @@ export default {
     }
   },
   computed: {
+    ...mapState(useQuizStore, ['questionIndex']),
     variants() {
       return this.quizStore.currentQuestion.variants
+    },
+  },
+  watch: {
+    questionIndex() {
+      this.$forceUpdate()
     },
   },
   methods: {
@@ -62,9 +69,10 @@ export default {
 }
 
 .quiz-letter {
-  width: 24px;
-  height: 24px;
-  background-color: #adabf2;
+  width: 26px;
+  height: 26px;
+  line-height: 2px;
+  background-color: #d7a4f7;
   border-radius: 100%;
   display: flex;
   justify-content: center;

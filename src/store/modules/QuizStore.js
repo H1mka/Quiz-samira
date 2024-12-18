@@ -49,10 +49,18 @@ const useQuizStore = defineStore('quizStore', {
         return
       }
       this.questionIndex += 1
+      this.flushData()
+    },
+    backQuestion() {
+      this.questionIndex -= 1
+      this.flushData()
+    },
+    flushData() {
       this.answer = {}
     },
   },
   getters: {
+    questionsLength: (state) => state.questions.length,
     currentQuestion: (state) => state.questions[state.questionIndex],
     correctAnswers: (state) =>
       state.questions.reduce((acc, item) => {

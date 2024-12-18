@@ -9,13 +9,12 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn
-          color="primary"
-          variant="flat"
-          :disabled="isNextButtonDisabled"
-          @click="handleNext"
-          >Next</v-btn
-        >
+        <v-btn color="primary" variant="flat" :disabled="isBackButtonDisabled" @click="handleBack">
+          Back
+        </v-btn>
+        <v-btn color="primary" variant="flat" :disabled="isNextButtonDisabled" @click="handleNext">
+          Next
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -23,7 +22,7 @@
 
 <script>
 import { useQuizStore } from '@/store'
-import { mapWritableState } from 'pinia'
+import { mapState, mapWritableState } from 'pinia'
 import QuizQuestions from '@/components/Quiz/QuizQuestions.vue'
 
 export default {
@@ -32,15 +31,22 @@ export default {
     return {}
   },
   computed: {
+    ...mapState(useQuizStore, ['questionsLength', 'questionIndex']),
     ...mapWritableState(useQuizStore, ['answer']),
     isNextButtonDisabled() {
       return !Object.values(this.answer).length
+    },
+    isBackButtonDisabled() {
+      return this.questionIndex === 0
     },
   },
   methods: {
     handleNext() {
       if (!this.answer) return
       this.quizStore.checkAnswer(this.answer)
+    },
+    handleBack() {
+      this.quizStore.backQuestion()
     },
   },
   setup() {
