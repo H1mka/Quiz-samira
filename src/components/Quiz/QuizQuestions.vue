@@ -72,4 +72,14 @@ export default {
   font-weight: bold;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
 </style>
