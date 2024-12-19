@@ -1,6 +1,7 @@
 <template>
   <v-progress-linear
     color="primary"
+    height="5"
     :model-value="preparedQuestionIndex"
     :max="questionsLength"
   ></v-progress-linear>

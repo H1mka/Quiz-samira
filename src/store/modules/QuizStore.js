@@ -39,15 +39,16 @@ const DEFAULT_QUESTIONS = [
   },
   {
     id: 1,
-    title: 'Тест 4',
+    title: 'Майнкрафт Холмс гей?',
+    imageSrc:
+      'https://sun9-80.userapi.com/impf/gPcjhOl6O0MIKFNQhDQqAhmhO0VptV3CG7Dn8w/6c7ALYhQ2WA.jpg?size=533x604&quality=96&sign=a01011fba4f72322b7a1e38dd6046482&type=album',
     variants: [
-      { id: 'ans-1', text: 'Вариант ответа 41' },
-      { id: 'ans-2', text: 'Вариант ответа 42' },
-      { id: 'ans-3', text: 'Вариант ответа 43' },
-      { id: 'ans-4', text: 'Вариант ответа 44' },
+      { id: 'ans-1', text: 'Да' },
+      { id: 'ans-2', text: 'СЭР НЕТ СЭР!' },
     ],
-    correctAnswerId: 'ans-1',
+    correctAnswerId: 'ans-2',
     isCorrect: false,
+    sneakyAnswer: true,
   },
 ]
 
