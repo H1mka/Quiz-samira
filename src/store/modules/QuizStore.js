@@ -56,6 +56,7 @@ const useQuizStore = defineStore('quizStore', {
     questions: JSON.parse(JSON.stringify(DEFAULT_QUESTIONS)),
     questionIndex: 0,
     answer: {},
+    showFinishTestModal: false,
   }),
   actions: {
     setCorrectAnswer(asnwerId) {
@@ -69,6 +70,8 @@ const useQuizStore = defineStore('quizStore', {
     nextQuestion() {
       if (this.questionIndex === this.questions.length - 1) {
         console.log('End of test!')
+        this.showFinishTestModal = true
+        // router.push({ name: 'ThankYouPage' })
         // router to finish page
         return
       }

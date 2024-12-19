@@ -1,7 +1,7 @@
 <template>
   <v-progress-linear
-    :model-value="questionIndex"
     color="primary"
+    :model-value="preparedQuestionIndex"
     :max="questionsLength"
   ></v-progress-linear>
 </template>
@@ -12,7 +12,16 @@ import { useQuizStore } from '@/store'
 
 export default {
   computed: {
-    ...mapState(useQuizStore, ['questionsLength', 'questionIndex']),
+    ...mapState(useQuizStore, [
+      'questionsLength',
+      'questionIndex',
+      'showFinishTestModal',
+    ]),
+    preparedQuestionIndex() {
+      return this.showFinishTestModal
+        ? this.questionsLength
+        : this.questionIndex
+    },
   },
 }
 </script>

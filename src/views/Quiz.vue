@@ -28,6 +28,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
+    <FinishTestModal />
   </v-container>
 </template>
 
@@ -36,9 +37,10 @@ import { useQuizStore } from '@/store'
 import { mapState, mapWritableState } from 'pinia'
 import QuizQuestions from '@/components/Quiz/QuizQuestions.vue'
 import QuizProgress from '@/components/Quiz/QuizProgress.vue'
+import FinishTestModal from '@/components/Quiz/modals/FinishTestModal.vue'
 
 export default {
-  components: { QuizQuestions, QuizProgress },
+  components: { QuizQuestions, QuizProgress, FinishTestModal },
   data() {
     return {}
   },
