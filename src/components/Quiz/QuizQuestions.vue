@@ -1,9 +1,9 @@
 <template>
   <v-card ref="quizCard" width="500">
     <QuizProgress />
-    <v-img height="280" :src="currentQuestion.imageSrc"></v-img>
+    <v-img height="280" :src="currentQuestion.imageSrc" :cover="currentQuestion.imageCover"></v-img>
     <v-card-title class="d-flex justify-center">
-      <h2>{{ quizStore.currentQuestion.title }}</h2>
+      <h2 style="white-space: pre-wrap">{{ quizStore.currentQuestion.title }}</h2>
     </v-card-title>
     <v-card-text>
       <QuizQuestionsList v-model:answer="answer" />
@@ -54,11 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(useQuizStore, [
-      'questionsLength',
-      'questionIndex',
-      'currentQuestion',
-    ]),
+    ...mapState(useQuizStore, ['questionsLength', 'questionIndex', 'currentQuestion']),
     ...mapWritableState(useQuizStore, ['answer']),
     isNextButtonDisabled() {
       return !Object.values(this.answer).length
