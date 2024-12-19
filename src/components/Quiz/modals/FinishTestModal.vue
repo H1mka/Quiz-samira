@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="showFinishTestModal" max-width="600" persistent>
+  <v-dialog v-model="showModal" max-width="600" persistent>
     <v-card>
       <v-card-title>Поздравляю с прохождением теста!</v-card-title>
       <Transition>
@@ -25,17 +25,27 @@
 </template>
 
 <script>
-import { mapWritableState } from 'pinia'
-import { useQuizStore } from '@/store'
-
 export default {
+  props: {
+    modelValue: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       step: 'gift',
     }
   },
   computed: {
-    ...mapWritableState(useQuizStore, ['showFinishTestModal']),
+    showModal: {
+      get() {
+        return this.modelValue
+      },
+      set(val) {
+        this.$emit('update:modelValue', val)
+      },
+    },
   },
 }
 </script>

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import router from '@/router'
 
 const DEFAULT_QUESTIONS = [
   {
@@ -94,10 +95,7 @@ const useQuizStore = defineStore('quizStore', {
     },
     nextQuestion() {
       if (this.questionIndex === this.questions.length - 1) {
-        console.log('End of test!')
-        this.showFinishTestModal = true
-        // router.push({ name: 'ThankYouPage' })
-        // router to finish page
+        router.push({ name: 'QuizEvaluation' })
         return
       }
       this.flushData()
@@ -114,7 +112,7 @@ const useQuizStore = defineStore('quizStore', {
   getters: {
     questionsLength: (state) => state.questions.length,
     currentQuestion: (state) => state.questions[state.questionIndex],
-    correctAnswers: (state) =>
+    correctAnswersNumber: (state) =>
       state.questions.reduce((acc, item) => {
         if (item.isCorrect) acc += 1
         return acc

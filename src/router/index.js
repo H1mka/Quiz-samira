@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '@/views/Login.vue'
 import Quiz from '@/views/Quiz.vue'
 import ThankYouPage from '@/views/ThankYouPage.vue'
+import QuizEvaluation from '../views/QuizEvaluation.vue'
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     path: '/quiz',
     name: 'Quiz',
     component: Quiz,
+  },
+  {
+    path: '/quiz-evaluation',
+    name: 'QuizEvaluation',
+    component: QuizEvaluation,
   },
   {
     path: '/thank-you',
