@@ -1,51 +1,109 @@
 <template>
-  <div>
-    <v-list density="compact" @click:select="handleSelect">
-      <v-list-item
-        v-for="(item, i) in variants"
-        :key="i"
-        :value="item"
+  <v-card ref="quizCard" width="500">
+    <QuizProgress />
+    <v-img height="280" :src="currentQuestion.imageSrc"></v-img>
+    <v-card-title class="d-flex justify-center">
+      <h2>{{ quizStore.currentQuestion.title }}</h2>
+    </v-card-title>
+    <v-card-text>
+      <QuizQuestionsList v-model:answer="answer" />
+    </v-card-text>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
         color="primary"
-        class="quiz-list-item"
+        variant="flat"
+        :class="{ 'mr-18': isSneakyAnswer }"
+        :disabled="isBackButtonDisabled"
+        @click="handleBack"
       >
-        <div class="quiz-letter">{{ letters[i] }}</div>
-        <div class="quiz-text">{{ item.text }}</div>
-      </v-list-item>
-    </v-list>
-  </div>
+        Back
+      </v-btn>
+      <v-btn
+        ref="nextButton"
+        color="primary"
+        variant="flat"
+        :class="{ 'sneaky-button': isSneakyAnswer }"
+        :style="isSneakyAnswer ? nextBtnStyles : {}"
+        :disabled="isNextButtonDisabled"
+        @click="handleNext"
+        @mouseenter="handleNextMouseEnter"
+      >
+        Next
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
 import { useQuizStore } from '@/store'
-import { mapState } from 'pinia'
+import { mapState, mapWritableState } from 'pinia'
+import QuizQuestionsList from '@/components/Quiz/QuizQuestionsList.vue'
+import QuizProgress from '@/components/Quiz/QuizProgress.vue'
+import FinishTestModal from '@/components/Quiz/modals/FinishTestModal.vue'
+
+const DEFAULT_NEXT_BTN_STYLES = {
+  right: 0,
+}
 
 export default {
-  props: {
-    answer: {
-      type: {},
-      required: true,
-      default: () => ({}),
-    },
-  },
+  components: { QuizQuestionsList, QuizProgress, FinishTestModal },
   data() {
     return {
-      letters: ['A', 'B', 'C', 'D', 'E', 'F'],
+      nextBtnStyles: { ...DEFAULT_NEXT_BTN_STYLES },
     }
   },
   computed: {
-    ...mapState(useQuizStore, ['questionIndex']),
-    variants() {
-      return this.quizStore.currentQuestion.variants
+    ...mapState(useQuizStore, [
+      'questionsLength',
+      'questionIndex',
+      'currentQuestion',
+    ]),
+    ...mapWritableState(useQuizStore, ['answer']),
+    isNextButtonDisabled() {
+      return !Object.values(this.answer).length
     },
-  },
-  watch: {
-    questionIndex() {
-      this.$forceUpdate()
+    isBackButtonDisabled() {
+      return this.questionIndex === 0
+    },
+    isSneakyAnswer() {
+      return this.currentQuestion.sneakyAnswer
+    },
+    isCorrectAnswer() {
+      return this.currentQuestion.correctAnswerId === this.answer.id
     },
   },
   methods: {
-    handleSelect(item) {
-      this.$emit('update:answer', item.id)
+    handleNext() {
+      if (!this.answer) return
+      this.quizStore.checkAnswer(this.answer)
+    },
+    handleBack() {
+      this.quizStore.backQuestion()
+      this.nextBtnStyles = { ...DEFAULT_NEXT_BTN_STYLES }
+    },
+    async handleNextMouseEnter() {
+      console.log('handleNextMouseEnter', this.answer)
+      await this.$nextTick()
+      console.log('test', this.isNextButtonDisabled)
+      if (!this.isSneakyAnswer || this.isCorrectAnswer) return
+
+      const offset = 10
+      const { width: cardWidth, height: cardHeight } =
+        this.$refs.quizCard.$el.getBoundingClientRect()
+      const { width: btnWidth, height: btnHeight } =
+        this.$refs.nextButton.$el.getBoundingClientRect()
+
+      const newX = this.getRandomNumber(0, cardWidth - btnWidth)
+      const newY = this.getRandomNumber(0, cardHeight - btnHeight + offset)
+
+      this.nextBtnStyles = {
+        top: newY + 'px',
+        right: newX + 'px',
+      }
+    },
+    getRandomNumber(min, max) {
+      return Math.random() * (max - min) + min
     },
   },
   setup() {
@@ -56,38 +114,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.quiz-list-item::v-deep {
-  font-size: 16px;
-  .v-list-item__content {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    gap: 20px;
-    overflow: visible;
-  }
+.sneaky-button {
+  position: absolute;
+  right: 0;
+  margin-right: 8px;
 }
 
-.quiz-letter {
-  width: 26px;
-  height: 26px;
-  line-height: 2px;
-  background-color: #d7a4f7;
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s;
-}
-.list-enter-from,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+.mr-18 {
+  margin-right: 72px;
 }
 </style>

@@ -45,6 +45,8 @@ const DEFAULT_QUESTIONS = [
     variants: [
       { id: 'ans-1', text: 'Да' },
       { id: 'ans-2', text: 'СЭР НЕТ СЭР!' },
+      { id: 'ans-3', text: 'Не уверена 👉👈' },
+      { id: 'ans-4', text: 'Другой ответ' },
     ],
     correctAnswerId: 'ans-2',
     isCorrect: false,
@@ -76,12 +78,12 @@ const useQuizStore = defineStore('quizStore', {
         // router to finish page
         return
       }
-      this.questionIndex += 1
       this.flushData()
+      this.questionIndex += 1
     },
     backQuestion() {
-      this.questionIndex -= 1
       this.flushData()
+      this.questionIndex -= 1
     },
     flushData() {
       this.answer = {}
