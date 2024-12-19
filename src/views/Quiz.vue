@@ -1,6 +1,7 @@
 <template>
   <v-container class="centered-container">
     <v-card width="500">
+      <QuizProgress />
       <v-card-title class="d-flex justify-center">
         <h2>{{ quizStore.currentQuestion.title }}</h2>
       </v-card-title>
@@ -9,10 +10,20 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer />
-        <v-btn color="primary" variant="flat" :disabled="isBackButtonDisabled" @click="handleBack">
+        <v-btn
+          color="primary"
+          variant="flat"
+          :disabled="isBackButtonDisabled"
+          @click="handleBack"
+        >
           Back
         </v-btn>
-        <v-btn color="primary" variant="flat" :disabled="isNextButtonDisabled" @click="handleNext">
+        <v-btn
+          color="primary"
+          variant="flat"
+          :disabled="isNextButtonDisabled"
+          @click="handleNext"
+        >
           Next
         </v-btn>
       </v-card-actions>
@@ -24,9 +35,10 @@
 import { useQuizStore } from '@/store'
 import { mapState, mapWritableState } from 'pinia'
 import QuizQuestions from '@/components/Quiz/QuizQuestions.vue'
+import QuizProgress from '@/components/Quiz/QuizProgress.vue'
 
 export default {
-  components: { QuizQuestions },
+  components: { QuizQuestions, QuizProgress },
   data() {
     return {}
   },

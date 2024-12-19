@@ -25,6 +25,30 @@ const DEFAULT_QUESTIONS = [
     correctAnswerId: 'ans-2',
     isCorrect: false,
   },
+  {
+    id: 1,
+    title: 'Тест 3',
+    variants: [
+      { id: 'ans-1', text: 'Вариант ответа 31' },
+      { id: 'ans-2', text: 'Вариант ответа 32' },
+      { id: 'ans-3', text: 'Вариант ответа 33' },
+      { id: 'ans-4', text: 'Вариант ответа 34' },
+    ],
+    correctAnswerId: 'ans-1',
+    isCorrect: false,
+  },
+  {
+    id: 1,
+    title: 'Тест 4',
+    variants: [
+      { id: 'ans-1', text: 'Вариант ответа 41' },
+      { id: 'ans-2', text: 'Вариант ответа 42' },
+      { id: 'ans-3', text: 'Вариант ответа 43' },
+      { id: 'ans-4', text: 'Вариант ответа 44' },
+    ],
+    correctAnswerId: 'ans-1',
+    isCorrect: false,
+  },
 ]
 
 const useQuizStore = defineStore('quizStore', {
