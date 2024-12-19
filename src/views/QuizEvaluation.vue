@@ -7,7 +7,7 @@
 
       <v-card-subtitle class="d-flex justify-center">{{ finishText }}</v-card-subtitle>
 
-      <v-card-text>
+      <v-card-text v-if="isPassedTest">
         <div class="text-body-1">Как бы вы оценили тест?</div>
         <v-slider
           v-model="ratingValue"
@@ -30,22 +30,27 @@
 
       <v-card-actions>
         <v-spacer />
-        <v-btn color="success" variant="flat">Підаруночек</v-btn>
-        <template> </template>
-        <template>
+        <template v-if="isPassedTest">
+          <v-btn color="success" variant="flat" @click="handleShowGift">Підаруночек</v-btn>
+        </template>
+        <template v-else>
           <v-btn variant="flat" color="primary" @click="handleRetryTest">Пройти заново</v-btn>
         </template>
       </v-card-actions>
     </v-card>
+
+    <GiftModal v-model="showGiftTable" />
   </v-container>
 </template>
 
 <script>
+import GiftModal from '@/components/Quiz/modals/GiftModal.vue'
 import { useQuizStore } from '@/store'
 import { mapState } from 'pinia'
 import { options } from '@/helper/options'
 
 export default {
+  components: { GiftModal },
   data: () => ({
     pointsNeeded: options?.pointsNeeded || 5,
     ratingValue: 4,
@@ -83,7 +88,12 @@ export default {
   },
   methods: {
     handleRetryTest() {
+      const quizStore = useQuizStore()
+      quizStore.$reset()
       this.$router.push({ name: 'Login' })
+    },
+    handleShowGift() {
+      this.showGiftTable = true
     },
   },
 }
@@ -91,7 +101,6 @@ export default {
 
 <style lang="scss" scoped>
 .rating-preview {
-  // filter: brightness(1);
   transition: all 0.3s ease-in;
 }
 </style>

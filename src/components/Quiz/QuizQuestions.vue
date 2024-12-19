@@ -40,14 +40,13 @@ import { useQuizStore } from '@/store'
 import { mapState, mapWritableState } from 'pinia'
 import QuizQuestionsList from '@/components/Quiz/QuizQuestionsList.vue'
 import QuizProgress from '@/components/Quiz/QuizProgress.vue'
-import FinishTestModal from '@/components/Quiz/modals/FinishTestModal.vue'
 
 const DEFAULT_NEXT_BTN_STYLES = {
   right: 0,
 }
 
 export default {
-  components: { QuizQuestionsList, QuizProgress, FinishTestModal },
+  components: { QuizQuestionsList, QuizProgress },
   data() {
     return {
       nextBtnStyles: { ...DEFAULT_NEXT_BTN_STYLES },

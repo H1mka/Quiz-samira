@@ -70,7 +70,7 @@ const DEFAULT_QUESTIONS = [
       { id: 'ans-1', text: 'Кирибатия' },
       { id: 'ans-2', text: 'Украина' },
       { id: 'ans-3', text: 'Япония' },
-      { id: 'ans-4', text: 'Новоя Зеландия' },
+      { id: 'ans-4', text: 'Новая Зеландия' },
     ],
     correctAnswerId: 'ans-1',
     isCorrect: false,

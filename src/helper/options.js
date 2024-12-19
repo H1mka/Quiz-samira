@@ -1,3 +1,3 @@
 export const options = {
-  pointsNeeded: 1,
+  pointsNeeded: 3,
 }

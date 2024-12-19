@@ -16,10 +16,13 @@
       </Transition>
       <Transition>
         <v-card-text v-if="step === 'info'">
-          <div class="text-h5">Info</div>
+          <div class="text-body-1">Ваш подарочек: 51.20231895645587, 6.77826279361639</div>
+          <div class="text-body-1">Бонус: ссылка</div>
         </v-card-text>
       </Transition>
-      <v-card-actions> </v-card-actions>
+      <v-card-actions>
+        <v-btn variant="flat" color="primary" @click="showModal = false">Close</v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -43,6 +46,7 @@ export default {
         return this.modelValue
       },
       set(val) {
+        if (!val) this.step = 'gift'
         this.$emit('update:modelValue', val)
       },
     },
