@@ -28,7 +28,7 @@ const DEFAULT_QUESTIONS = [
       { id: 'ans-3', text: 'Одинаково' },
       { id: 'ans-4', text: 'Килограмм снежинок' },
     ],
-    correctAnswerId: 'ans-3',
+    correctAnswerId: 'ans-2',
     isCorrect: false,
   },
   {
