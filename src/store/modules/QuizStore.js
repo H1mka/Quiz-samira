@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import router from '@/router'
+import { useToast } from 'vue-toastification'
 
 const DEFAULT_QUESTIONS = [
   {
@@ -75,6 +76,50 @@ const DEFAULT_QUESTIONS = [
     correctAnswerId: 'ans-1',
     isCorrect: false,
   },
+  {
+    id: 6,
+    title: 'Как зовут любимого оленя Санты?',
+    imageSrc:
+      'https://somanyhorses.ru/media/109688/download/zblyxvgq_61cb188228be5_3-foto.jpeg?v=1',
+    imageCover: true,
+    variants: [
+      { id: 'ans-1', text: 'Серёжа' },
+      { id: 'ans-2', text: 'Адольф' },
+      { id: 'ans-3', text: 'Рудольф' },
+      { id: 'ans-4', text: 'Арнольд' },
+    ],
+    correctAnswerId: 'ans-3',
+    isCorrect: false,
+  },
+  {
+    id: 7,
+    title: 'В какой стране впервые появилась традиция украшать ёлку?',
+    imageSrc:
+      'https://somanyhorses.ru/media/109688/download/zblyxvgq_61cb188228be5_3-foto.jpeg?v=1',
+    imageCover: true,
+    variants: [
+      { id: 'ans-1', text: 'Франция' },
+      { id: 'ans-2', text: 'Германия' },
+      { id: 'ans-3', text: 'Швеция' },
+      { id: 'ans-4', text: 'Люксембург' },
+    ],
+    correctAnswerId: 'ans-2',
+    isCorrect: false,
+  },
+  {
+    id: 8,
+    title: 'Что делает снеговик, если ему жарко?',
+    imageSrc: 'https://i.pinimg.com/474x/e7/0a/b4/e70ab4d74888beab6d68078c06f1511a.jpg',
+    imageCover: true,
+    variants: [
+      { id: 'ans-1', text: 'Перестаёт быть снеговиком' },
+      { id: 'ans-2', text: 'Просит лёд' },
+      { id: 'ans-3', text: 'Идёт в холодильник' },
+      { id: 'ans-4', text: 'Грееться' },
+    ],
+    correctAnswerId: 'ans-1',
+    isCorrect: false,
+  },
 ]
 
 const useQuizStore = defineStore('quizStore', {
@@ -86,7 +131,10 @@ const useQuizStore = defineStore('quizStore', {
   }),
   actions: {
     setCorrectAnswer(asnwerId) {
+      const toast = useToast()
       const correct = asnwerId === this.currentQuestion.correctAnswerId
+      if (correct) toast.success('Верно', { timeout: 2500 })
+      else toast.error('Не верно', { timeout: 2500 })
       this.currentQuestion.isCorrect = correct
     },
     checkAnswer(asnwer) {

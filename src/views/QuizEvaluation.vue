@@ -23,7 +23,7 @@
             width="100%"
             aspect-ratio="16/9"
             cover
-            src="https://lh3.googleusercontent.com/proxy/B3ba2NT-56avfpZWhkdIOo4dydtrampShgcJYcTrEJz0dDkl5q5agMEGy7jPhaptPUkh7RWB8evbQ-RgQd8huY6k9kfLd4YluUO0X3e-Wai3ttxUIHQFFAD_koo5-j__KDmxTCZAYVzUYb-QpJR3FoXVqSLC-0HyGCoMx9S8FOWFCJbpaEX87V5bs9TWdSplM_b8B22rR0BhMeTuciBkI2_grDqdn8hV6oKukKQcwA-Nbw7L9jd7sXpCHkiA02VeRALBI_JeNZxteJubLSu8S5ct3jQsnwhO0YXx9nmWBCLaTl34OGZ9b0bvlCmoP87_xY8hi96Sw_1r2w"
+            src="https://cs5.pikabu.ru/post_img/big/2014/08/30/9/1409406660_1148277290.jpg"
           ></v-img>
         </div>
       </v-card-text>

@@ -78,7 +78,6 @@ export default {
       this.nextBtnStyles = { ...DEFAULT_NEXT_BTN_STYLES }
     },
     async handleNextMouseEnter() {
-      console.log('handleNextMouseEnter', this.answer)
       await this.$nextTick()
       console.log('test', this.isNextButtonDisabled)
       if (!this.isSneakyAnswer || this.isCorrectAnswer) return
