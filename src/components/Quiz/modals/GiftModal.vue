@@ -17,7 +17,15 @@
       <Transition>
         <v-card-text v-if="step === 'info'">
           <div class="text-body-1">Ваш подарочек: 51.20231895645587, 6.77826279361639</div>
-          <div class="text-body-1">Бонус: ссылка</div>
+          <div class="text-body-1">
+            Бонус:
+            <a
+              href="https://drive.google.com/file/d/1DOUp7vThgGoiTdhzj01KzSyaRGllq5Lq/view?usp=sharing"
+              target="_blank"
+            >
+              Клик
+            </a>
+          </div>
         </v-card-text>
       </Transition>
       <v-card-actions>
