@@ -24,7 +24,7 @@ const DEFAULT_QUESTIONS = [
     imageCover: true,
     variants: [
       { id: 'ans-1', text: 'Килограмм железа' },
-      { id: 'ans-2', text: 'Килограмм чугуна' },
+      { id: 'ans-2', text: 'Килограмм чунгука' },
       { id: 'ans-3', text: 'Одинаково' },
       { id: 'ans-4', text: 'Килограмм снежинок' },
     ],
