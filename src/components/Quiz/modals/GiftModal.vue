@@ -8,7 +8,7 @@
             :width="260"
             aspect-ratio="16/9"
             cover
-            src="/src/assets/red-gift.png"
+            src="/assets/red-gift.png"
             class="gift-image"
             @click="step = 'info'"
           ></v-img>
