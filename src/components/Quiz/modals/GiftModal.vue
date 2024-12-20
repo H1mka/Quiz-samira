@@ -8,7 +8,7 @@
             :width="260"
             aspect-ratio="16/9"
             cover
-            src="/assets/red-gift.png"
+            src="https://i.pinimg.com/originals/6e/0e/0f/6e0e0f75ba3bd7bfdab080af2784ee23.png"
             class="gift-image"
             @click="step = 'info'"
           ></v-img>

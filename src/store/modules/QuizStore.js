@@ -80,7 +80,7 @@ const DEFAULT_QUESTIONS = [
     id: 6,
     title: 'Как зовут любимого оленя Санты?',
     imageSrc:
-      'https://somanyhorses.ru/media/109688/download/zblyxvgq_61cb188228be5_3-foto.jpeg?v=1',
+      'https://oir.mobi/uploads/posts/2021-05/1619983827_8-oir_mobi-p-smeshnoi-olen-zhivotnie-krasivo-foto-8.jpg',
     imageCover: true,
     variants: [
       { id: 'ans-1', text: 'Серёжа' },
@@ -94,8 +94,7 @@ const DEFAULT_QUESTIONS = [
   {
     id: 7,
     title: 'В какой стране впервые появилась традиция украшать ёлку?',
-    imageSrc:
-      'https://somanyhorses.ru/media/109688/download/zblyxvgq_61cb188228be5_3-foto.jpeg?v=1',
+    imageSrc: 'https://kaktus.ua/upload/iblock/46f/dizayn-novogodney-elki-2024.jpg',
     imageCover: true,
     variants: [
       { id: 'ans-1', text: 'Франция' },
